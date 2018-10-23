@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="choose_tea_margin">16dp</dimen>
+    <dimen name="choose_tea_text_size">24sp</dimen>
+
+    <dimen name="tea_item_padding">12dp</dimen>
+    <dimen name="tea_title_text_size">16sp</dimen>
+</resources>
