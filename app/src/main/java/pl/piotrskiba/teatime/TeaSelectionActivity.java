@@ -9,7 +9,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import pl.piotrskiba.teatime.adapters.TeaListAdapter;
 
-public class MainActivity extends AppCompatActivity {
+public class TeaSelectionActivity extends AppCompatActivity {
 
     @BindView(R.id.rv_tea_list)
     RecyclerView mTeaList;
