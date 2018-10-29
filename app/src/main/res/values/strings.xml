@@ -9,10 +9,10 @@
         <item>tea_oolong</item>
         <item>tea_green</item>
         <item>tea_herbal</item>
-        <item>tea_yerbamate</item>
+        <item>tea_white</item>
         <item>tea_peppermint</item>
         <item>tea_puerh</item>
-        <item>tea_white</item>
+        <item>tea_yerbamate</item>
         <item>tea_matcha</item>
     </string-array>
 
@@ -21,10 +21,10 @@
         <item>Oolong tea</item>
         <item>Green tea</item>
         <item>Herbal tea</item>
-        <item>Yerba mate</item>
+        <item>White tea</item>
         <item>Peppermint tea</item>
         <item>Pu\'erh tea</item>
-        <item>White tea</item>
+        <item>Yerba mate</item>
         <item>Matcha</item>
     </string-array>
 </resources>
