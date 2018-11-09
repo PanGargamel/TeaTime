@@ -1,5 +1,6 @@
 package pl.piotrskiba.teatime;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -8,8 +9,9 @@ import android.support.v7.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import pl.piotrskiba.teatime.adapters.TeaListAdapter;
+import pl.piotrskiba.teatime.interfaces.TeaSelectedListener;
 
-public class TeaSelectionActivity extends AppCompatActivity {
+public class TeaSelectionActivity extends AppCompatActivity implements TeaSelectedListener {
 
     @BindView(R.id.rv_tea_list)
     RecyclerView mTeaList;
@@ -28,7 +30,13 @@ public class TeaSelectionActivity extends AppCompatActivity {
         mTeaList.setLayoutManager(mLayoutManager);
         mTeaList.setHasFixedSize(true);
 
-        TeaListAdapter adapter = new TeaListAdapter(this);
+        TeaListAdapter adapter = new TeaListAdapter(this, this);
         mTeaList.setAdapter(adapter);
+    }
+
+    @Override
+    public void onTeaSelected(String tea_id) {
+        Intent intent = new Intent(getApplicationContext(), TeaPropertiesSelectionActivity.class);
+        startActivity(intent);
     }
 }

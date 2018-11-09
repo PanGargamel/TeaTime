@@ -13,6 +13,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import pl.piotrskiba.teatime.R;
+import pl.piotrskiba.teatime.interfaces.TeaSelectedListener;
 
 public class TeaListAdapter extends RecyclerView.Adapter<TeaListAdapter.TeaListAdapterViewHolder> {
 
@@ -20,10 +21,14 @@ public class TeaListAdapter extends RecyclerView.Adapter<TeaListAdapter.TeaListA
     private String[] mTeaIds;
     private String[] mTeaNames;
 
-    public TeaListAdapter(Context context){
+    private TeaSelectedListener teaSelectedListener;
+
+    public TeaListAdapter(Context context, TeaSelectedListener teaSelectedListener){
         this.context = context;
         mTeaIds = context.getResources().getStringArray(R.array.tea_ids);
         mTeaNames = context.getResources().getStringArray(R.array.tea_names);
+
+        this.teaSelectedListener = teaSelectedListener;
     }
 
     @NonNull
@@ -49,7 +54,7 @@ public class TeaListAdapter extends RecyclerView.Adapter<TeaListAdapter.TeaListA
         return mTeaIds.length;
     }
 
-    public class TeaListAdapterViewHolder extends RecyclerView.ViewHolder{
+    public class TeaListAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         @BindView(R.id.iv_tea_image)
         ImageView mTeaImage;
@@ -61,6 +66,15 @@ public class TeaListAdapter extends RecyclerView.Adapter<TeaListAdapter.TeaListA
             super(itemView);
 
             ButterKnife.bind(this, itemView);
+
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            int clickedPosition = getAdapterPosition();
+            String clickedTeaId = mTeaIds[clickedPosition];
+            teaSelectedListener.onTeaSelected(clickedTeaId);
         }
     }
 }
