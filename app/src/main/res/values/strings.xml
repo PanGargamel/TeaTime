@@ -27,4 +27,16 @@
         <item>Yerba mate</item>
         <item>Matcha</item>
     </string-array>
+
+    <string-array name="tea_descriptions">
+        <item>A type of tea that is more oxidized than oolong, green, and white teas. Generally stronger in flavour, it also has more caffeine. Made from Camellia sinensis leaves.</item>
+        <item>A traditional semi-oxidized Chinese tea, made from the leaves of the Camellia sinensis plant, the same plant used to make green tea and black tea. Known for its health benefits.</item>
+        <item>Made from Camellia sinensis leaves that have not been oxidized before drying. Most popular type of tea in Japan and in parts of China.</item>
+        <item>Made from the infusion or decoction of herbs, spices, or other plant material in hot water. Herbal tea do not usually contain caffeine.</item>
+        <item>Generally young or minimally processed leaves of the Camellia sinensis plant. White tea is not rolled or oxidized, resulting in a flavour characterized as "lighter" than most green or tradidional black teas.</item>
+        <item>A herbal tea made by infusing peppermint leaves. Due to the high content of essential oils in leaves, mint tea is popular for its curative effects.</item>
+        <item>A variety of fermented tea produced in Yunnan province, China. The Chinese consider the Pu-erh tea as the true "black" tea. Its tea leaves are fermented several times over a long period of time.</item>
+        <item>a traditional drink made from the dried leaves of an evergreen holly, very popular in South America. It provides an energy boost similar to coffee, but with less caffeine and more nutrients.</item>
+        <item>Finely ground powder of specially grown and processed green tea leaves. Because matcha is made from high-quality tea, and the whole leaves are ingested, it’s a more potent source of nutrients than steeped green tea.</item>
+    </string-array>
 </resources>
