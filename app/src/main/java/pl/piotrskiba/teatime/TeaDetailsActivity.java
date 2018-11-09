@@ -9,7 +9,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class TeaPropertiesSelectionActivity extends AppCompatActivity {
+public class TeaDetailsActivity extends AppCompatActivity {
 
     @BindView(R.id.tv_tea_name)
     TextView mTeaName;

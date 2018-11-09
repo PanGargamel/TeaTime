@@ -36,7 +36,7 @@ public class TeaSelectionActivity extends AppCompatActivity implements TeaSelect
 
     @Override
     public void onTeaSelected(int tea_index) {
-        Intent intent = new Intent(getApplicationContext(), TeaPropertiesSelectionActivity.class);
+        Intent intent = new Intent(getApplicationContext(), TeaDetailsActivity.class);
         intent.putExtra(Constants.EXTRA_INDEX, tea_index);
         startActivity(intent);
     }
