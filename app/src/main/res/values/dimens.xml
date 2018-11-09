@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- activity_main.xml -->
     <dimen name="choose_tea_margin">16dp</dimen>
     <dimen name="choose_tea_text_size">24sp</dimen>
 
     <dimen name="tea_item_padding">12dp</dimen>
     <dimen name="tea_title_text_size">16sp</dimen>
+
+    <!-- activity_tea_properties_selection.xml -->
+    <dimen name="description_text_size">16sp</dimen>
+    <dimen name="description_padding">8dp</dimen>
+
 </resources>

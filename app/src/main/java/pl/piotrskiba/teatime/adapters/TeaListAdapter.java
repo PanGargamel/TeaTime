@@ -73,8 +73,7 @@ public class TeaListAdapter extends RecyclerView.Adapter<TeaListAdapter.TeaListA
         @Override
         public void onClick(View v) {
             int clickedPosition = getAdapterPosition();
-            String clickedTeaId = mTeaIds[clickedPosition];
-            teaSelectedListener.onTeaSelected(clickedTeaId);
+            teaSelectedListener.onTeaSelected(clickedPosition);
         }
     }
 }
