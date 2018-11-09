@@ -11,6 +11,9 @@ import butterknife.ButterKnife;
 
 public class TeaPropertiesSelectionActivity extends AppCompatActivity {
 
+    @BindView(R.id.tv_tea_name)
+    TextView mTeaName;
+
     @BindView(R.id.tv_tea_description)
     TextView mTeaDescription;
 
@@ -37,6 +40,7 @@ public class TeaPropertiesSelectionActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle(tea_name);
 
+        mTeaName.setText(tea_name);
         mTeaDescription.setText(tea_description);
     }
 }
