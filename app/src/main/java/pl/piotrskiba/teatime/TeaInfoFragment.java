@@ -20,6 +20,9 @@ public class TeaInfoFragment extends Fragment {
     @BindView(R.id.tv_tea_description)
     TextView mTeaDescription;
 
+    @BindView(R.id.tv_tea_brewing_instructions)
+    TextView mTeaBrewingInstructions;
+
     public TeaInfoFragment() {
         // Required empty public constructor
     }
@@ -49,8 +52,11 @@ public class TeaInfoFragment extends Fragment {
     private void populateFragment(){
         String tea_name = getResources().getStringArray(R.array.tea_names)[mTeaIndex];
         String tea_description = getResources().getStringArray(R.array.tea_descriptions)[mTeaIndex];
+        String tea_brewing_instructions = getResources().getStringArray(R.array.tea_brewing_instructions)[mTeaIndex];
 
         mTeaName.setText(tea_name);
         mTeaDescription.setText(tea_description);
+
+        mTeaBrewingInstructions.setText(tea_brewing_instructions);
     }
 }

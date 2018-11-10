@@ -1,23 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".TeaInfoFragment"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tv_tea_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/title_text_size"
-        android:padding="@dimen/title_padding"/>
-
-    <TextView
-        android:id="@+id/tv_tea_description"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/description_text_size"
-        android:paddingLeft="@dimen/description_padding"/>
+        android:layout_height="match_parent"
+        tools:context=".TeaInfoFragment"
+        android:orientation="vertical">
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/tv_tea_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/title_text_size"
+            android:padding="@dimen/title_padding"/>
+
+        <TextView
+            android:id="@+id/tv_tea_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/description_text_size"
+            android:paddingLeft="@dimen/description_padding"
+            android:paddingStart="@dimen/description_padding" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/brewing_instructions"
+            android:textSize="@dimen/description_text_size"
+            android:textStyle="bold"
+            android:paddingTop="@dimen/brewing_instructions_padding"
+            android:paddingLeft="@dimen/title_padding"
+            android:paddingStart="@dimen/title_padding" />
+
+        <TextView
+            android:id="@+id/tv_tea_brewing_instructions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/description_text_size"
+            android:paddingLeft="@dimen/description_padding"
+            android:paddingStart="@dimen/description_padding"
+            android:paddingRight="@dimen/description_padding"
+            android:paddingEnd="@dimen/description_padding"
+            android:paddingBottom="@dimen/brewing_instructions_padding" />
+
+    </LinearLayout>
+</ScrollView>
