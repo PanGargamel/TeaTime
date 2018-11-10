@@ -43,11 +43,11 @@ public class TeaDetailsActivity extends AppCompatActivity {
 
         Intent parentIntent = getIntent();
         if(parentIntent.hasExtra(Constants.EXTRA_INDEX)){
-            populateUi();
-
             mTeaIndex = parentIntent.getIntExtra(Constants.EXTRA_INDEX, -1);
             teaInfoFragment.setTeaIndex(mTeaIndex);
             teaTimerFragment.setTeaIndex(mTeaIndex);
+
+            populateUi();
         }
     }
 
