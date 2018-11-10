@@ -7,18 +7,19 @@
     tools:context=".TeaDetailsActivity"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_tea_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/title_text_size"
-        android:padding="@dimen/title_padding"/>
-
-    <TextView
-        android:id="@+id/tv_tea_description"
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/description_text_size"
-        android:paddingLeft="@dimen/description_padding"/>
+        app:tabMode="fixed"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:tabGravity="fill"
+        app:tabTextColor="#FFF"
+        app:tabSelectedTextColor="@color/colorAccent" />
 
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </LinearLayout>

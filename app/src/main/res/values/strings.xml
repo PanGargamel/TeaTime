@@ -39,4 +39,7 @@
         <item>A traditional drink made from the dried leaves of an evergreen holly, very popular in South America. It provides an energy boost similar to coffee, but with less caffeine and more nutrients.</item>
         <item>Finely ground powder of specially grown and processed green tea leaves. Because matcha is made from high-quality tea, and the whole leaves are ingested, it’s a more potent source of nutrients than steeped green tea.</item>
     </string-array>
+
+    <string name="tab_info">Tea info</string>
+    <string name="tab_timer">Timer</string>
 </resources>

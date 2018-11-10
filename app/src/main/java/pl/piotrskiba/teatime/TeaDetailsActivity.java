@@ -1,21 +1,27 @@
 package pl.piotrskiba.teatime;
 
 import android.content.Intent;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ImageView;
-import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class TeaDetailsActivity extends AppCompatActivity {
 
-    @BindView(R.id.tv_tea_name)
-    TextView mTeaName;
+    @BindView(R.id.pager)
+    ViewPager mViewPager;
 
-    @BindView(R.id.tv_tea_description)
-    TextView mTeaDescription;
+    @BindView(R.id.tabs)
+    TabLayout mTabLayout;
 
     int mTeaIndex;
 
@@ -26,21 +32,57 @@ public class TeaDetailsActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        TeaInfoFragment teaInfoFragment = new TeaInfoFragment();
+        TeaTimerFragment teaTimerFragment = new TeaTimerFragment();
+        adapter.addFragment(teaInfoFragment, getString(R.string.tab_info));
+        adapter.addFragment(teaTimerFragment, getString(R.string.tab_timer));
+        mViewPager.setAdapter(adapter);
+
+        mTabLayout.setupWithViewPager(mViewPager);
+
         Intent parentIntent = getIntent();
         if(parentIntent.hasExtra(Constants.EXTRA_INDEX)){
-            mTeaIndex = parentIntent.getIntExtra(Constants.EXTRA_INDEX, -1);
             populateUi();
+
+            mTeaIndex = parentIntent.getIntExtra(Constants.EXTRA_INDEX, -1);
+            teaInfoFragment.setTeaIndex(mTeaIndex);
+            teaTimerFragment.setTeaIndex(mTeaIndex);
         }
     }
 
     private void populateUi(){
-        String tea_id = getResources().getStringArray(R.array.tea_ids)[mTeaIndex];
         String tea_name = getResources().getStringArray(R.array.tea_names)[mTeaIndex];
-        String tea_description = getResources().getStringArray(R.array.tea_descriptions)[mTeaIndex];
 
         getSupportActionBar().setTitle(tea_name);
+    }
 
-        mTeaName.setText(tea_name);
-        mTeaDescription.setText(tea_description);
+    class ViewPagerAdapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
+
+        public ViewPagerAdapter(FragmentManager manager) {
+            super(manager);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+
+        public void addFragment(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitleList.get(position);
+        }
     }
 }
