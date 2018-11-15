@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/description_text_size"
             android:paddingLeft="@dimen/description_padding"
-            android:paddingStart="@dimen/description_padding" />
+            android:paddingRight="@dimen/description_padding" />
 
         <TextView
             android:layout_width="match_parent"
