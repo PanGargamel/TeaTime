@@ -67,7 +67,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/D:/Programy/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/navigation/ic_menu_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/D:/Programy/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/maps/ic_local_cafe_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -77,9 +77,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="color" value="ffffff" />
-                            <entry key="outputName" value="ic_menu" />
-                            <entry key="sourceFile" value="C:\Users\pskib\Desktop\tea.svg" />
+                            <entry key="outputName" value="ic_tea" />
+                            <entry key="sourceFile" value="C:\Users\pskib\Downloads\if_cup_1075468.svg" />
                           </map>
                         </option>
                       </PersistentState>
