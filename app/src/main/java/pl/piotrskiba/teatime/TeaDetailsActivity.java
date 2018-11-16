@@ -33,7 +33,7 @@ public class TeaDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tea_properties_selection);
+        setContentView(R.layout.activity_tea_details);
 
         ButterKnife.bind(this);
 
