@@ -2,7 +2,7 @@
     <string name="choose_tea">Wybierz herbatę:</string>
 
     <!-- drawer_view.xml -->
-    <string name="make_tea">Make a tea</string>
+    <string name="make_tea">Zrób herbatę</string>
 
     <string-array name="tea_names">
         <item>Herbata czarna</item>
