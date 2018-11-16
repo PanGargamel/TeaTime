@@ -6,8 +6,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +18,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class TeaDetailsActivity extends AppCompatActivity {
+
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
 
     @BindView(R.id.pager)
     ViewPager mViewPager;
@@ -31,6 +36,10 @@ public class TeaDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tea_properties_selection);
 
         ButterKnife.bind(this);
+
+        this.setSupportActionBar(mToolbar);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         TeaInfoFragment teaInfoFragment = new TeaInfoFragment();

@@ -16,4 +16,8 @@
     <dimen name="brewing_instructions_title_padding">24dp</dimen>
     <dimen name="brewing_instructions_padding_top">8dp</dimen>
 
+    <!-- drawer_view nav_header -->
+    <dimen name="nav_header_height">192dp</dimen>
+    <dimen name="nav_header_padding">16dp</dimen>
+
 </resources>

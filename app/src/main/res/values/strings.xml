@@ -1,6 +1,9 @@
 <resources>
-    <string name="app_name">TeaTime</string>
+    <string name="app_name" translatable="false">TeaTime</string>
     <string name="choose_tea">Choose your tea:</string>
+
+    <!-- drawer_view.xml -->
+    <string name="make_tea">Make a tea</string>
 
     <string name="drawable" translatable="false">drawable</string>
 
