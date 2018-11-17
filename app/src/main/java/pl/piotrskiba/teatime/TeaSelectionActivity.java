@@ -1,6 +1,8 @@
 package pl.piotrskiba.teatime;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -23,6 +25,9 @@ public class TeaSelectionActivity extends AppCompatActivity implements TeaSelect
 
     @BindView(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
+
+    @BindView(R.id.navigation_view)
+    NavigationView mNavigationView;
 
     @BindView(R.id.rv_tea_list)
     RecyclerView mTeaList;
@@ -48,6 +53,24 @@ public class TeaSelectionActivity extends AppCompatActivity implements TeaSelect
 
         TeaListAdapter adapter = new TeaListAdapter(this, this);
         mTeaList.setAdapter(adapter);
+
+        // make first menu item selected by default
+        mNavigationView.getMenu().getItem(0).setChecked(true);
+
+        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                item.setChecked(true);
+                mDrawerLayout.closeDrawers();
+
+                switch (item.getItemId()){
+                    default:
+                        break;
+                }
+
+                return true;
+            }
+        });
     }
 
     @Override
