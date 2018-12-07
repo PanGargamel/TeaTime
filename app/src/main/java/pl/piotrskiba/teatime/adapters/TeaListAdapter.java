@@ -3,7 +3,6 @@ package pl.piotrskiba.teatime.adapters;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,7 +45,6 @@ public class TeaListAdapter extends RecyclerView.Adapter<TeaListAdapter.TeaListA
         int resourceId = context.getResources().getIdentifier(mTeaIds[position], context.getString(R.string.drawable), context.getPackageName());
         holder.mTeaImage.setImageResource(resourceId);
         holder.mTeaName.setText(mTeaNames[position]);
-        Log.d("onBindViewHolder", "Binded " + mTeaNames[position] + " (" + (position+1) +"/" + getItemCount() + ")");
     }
 
     @Override
