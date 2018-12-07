@@ -36,4 +36,7 @@ dependencies {
 
     // TabLayout
     implementation 'com.android.support:design:27.1.1'
+
+    // Preferences
+    implementation 'com.android.support:preference-v7:27.1.1'
 }

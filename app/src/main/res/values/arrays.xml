@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="pref_language_option_labels">
+        <item>@string/pref_language_label_default</item>
+        <item>@string/pref_language_label_english</item>
+        <item>@string/pref_language_label_polish</item>
+    </array>
+
+    <array name="pref_language_option_values">
+        <item>@string/pref_language_value_default</item>
+        <item>@string/pref_language_value_english</item>
+        <item>@string/pref_language_value_polish</item>
+    </array>
+
+</resources>

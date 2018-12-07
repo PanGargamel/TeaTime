@@ -1,6 +1,11 @@
 package pl.piotrskiba.teatime;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,11 +17,15 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import pl.piotrskiba.teatime.adapters.TeaListAdapter;
 import pl.piotrskiba.teatime.interfaces.TeaSelectedListener;
+import pl.piotrskiba.teatime.utils.LanguageUtils;
 
 public class TeaSelectionActivity extends AppCompatActivity implements TeaSelectedListener {
 
@@ -34,12 +43,21 @@ public class TeaSelectionActivity extends AppCompatActivity implements TeaSelect
 
     GridLayoutManager mLayoutManager;
 
+    Context mContext;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // set language
+        if(!LanguageUtils.getAppLanguage().equals(LanguageUtils.getLanguageFromSettings(this)))
+            LanguageUtils.setAppLanguage(getBaseContext(), LanguageUtils.getLanguageFromSettings(this));
+
         setContentView(R.layout.activity_main);
 
         ButterKnife.bind(this);
+
+        mContext = this;
 
         this.setSupportActionBar(mToolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -60,10 +78,15 @@ public class TeaSelectionActivity extends AppCompatActivity implements TeaSelect
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                item.setChecked(true);
                 mDrawerLayout.closeDrawers();
 
                 switch (item.getItemId()){
+                    case R.id.nav_make_tea:
+                        break;
+                    case R.id.nav_settings:
+                        Intent intent = new Intent(mContext, SettingsActivity.class);
+                        startActivity(intent);
+                        break;
                     default:
                         break;
                 }
@@ -71,6 +94,16 @@ public class TeaSelectionActivity extends AppCompatActivity implements TeaSelect
                 return true;
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // set language
+        if(!LanguageUtils.getAppLanguage().equals(LanguageUtils.getLanguageFromSettings(this))) {
+            recreate();
+        }
     }
 
     @Override

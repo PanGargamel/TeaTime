@@ -3,6 +3,7 @@
 
     <!-- drawer_view.xml -->
     <string name="make_tea">Zrób herbatę</string>
+    <string name="settings">Ustawienia</string>
 
     <string-array name="tea_names">
         <item>Herbata czarna</item>
@@ -44,4 +45,14 @@
 
     <string name="tab_info">Informacje</string>
     <string name="tab_timer">Minutnik</string>
+
+    <!-- Preferences -->
+    <string name="pref_language_label_title">Język</string>
+
+    <string name="pref_language_label_default">Domyślny</string>
+    <string name="pref_language_label_english">Angielski</string>
+    <string name="pref_language_label_polish">Polski</string>
+
+    <!-- snackbars, toasts -->
+    <string name="language_changed">Język aplikacji zostanie zmieniony po opuszczeniu ustawień.</string>
 </resources>

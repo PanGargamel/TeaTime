@@ -10,8 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:launchMode="singleTop"
-            android:name=".TeaSelectionActivity">
+            android:name=".TeaSelectionActivity"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,9 +19,13 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".TeaDetailsActivity"
             android:launchMode="singleTop"
-            android:parentActivityName=".TeaSelectionActivity"
-            android:name=".TeaDetailsActivity"></activity>
+            android:parentActivityName=".TeaSelectionActivity" />
+        <activity
+            android:name=".SettingsActivity"
+            android:launchMode="singleTop"
+            android:parentActivityName=".TeaSelectionActivity" />
     </application>
 
 </manifest>
