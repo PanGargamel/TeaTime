@@ -20,6 +20,30 @@
         <item>tea_matcha</item>
     </string-array>
 
+    <string-array name="tea_brewing_temperature_images" translatable="false">
+        <item>ic_instructions_temperature_96</item>
+        <item>ic_instructions_temperature_96</item>
+        <item>ic_instructions_temperature_80_85</item>
+        <item>ic_instructions_temperature_96</item>
+        <item>ic_instructions_temperature_80_85</item>
+        <item>ic_instructions_temperature_96</item>
+        <item>ic_instructions_temperature_90</item>
+        <item>ic_instructions_temperature_70_80</item>
+        <item>ic_instructions_temperature_70_85</item>
+    </string-array>
+
+    <string-array name="tea_brewing_time_images" translatable="false">
+        <item>ic_instructions_time_3_5</item>
+        <item>ic_instructions_time_3_5</item>
+        <item>ic_instructions_time_2_4</item>
+        <item>ic_instructions_time_3_6</item>
+        <item>ic_instructions_time_1_3</item>
+        <item>ic_instructions_time_3_12</item>
+        <item>ic_instructions_time_3_5</item>
+        <item />
+        <item />
+    </string-array>
+
     <string-array name="tea_names">
         <item>Black tea</item>
         <item>Oolong tea</item>

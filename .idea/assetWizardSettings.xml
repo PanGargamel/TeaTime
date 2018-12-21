@@ -95,8 +95,12 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_settings" />
-                            <entry key="sourceFile" value="C:\Users\pskib\Downloads\if_cup_1075468.svg" />
+                            <entry key="assetSourceType" value="FILE" />
+                            <entry key="height" value="75" />
+                            <entry key="outputName" value="ic_instructions_temperature_96" />
+                            <entry key="overrideSize" value="true" />
+                            <entry key="sourceFile" value="C:\Users\pskib\Documents\grafika\Chroma\ikony - herbata\96.svg" />
+                            <entry key="width" value="72" />
                           </map>
                         </option>
                       </PersistentState>

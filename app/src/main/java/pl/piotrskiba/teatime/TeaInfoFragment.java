@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import butterknife.BindView;
@@ -22,6 +23,12 @@ public class TeaInfoFragment extends Fragment {
 
     @BindView(R.id.tv_tea_brewing_instructions)
     TextView mTeaBrewingInstructions;
+
+    @BindView(R.id.tea_instructions_temperature)
+    ImageView mTeaBrewingTemperatureImageView;
+
+    @BindView(R.id.tea_instructions_time)
+    ImageView mTeaBrewingTimeImageView;
 
     public TeaInfoFragment() {
         // Required empty public constructor
@@ -53,10 +60,22 @@ public class TeaInfoFragment extends Fragment {
         String tea_name = getResources().getStringArray(R.array.tea_names)[mTeaIndex];
         String tea_description = getResources().getStringArray(R.array.tea_descriptions)[mTeaIndex];
         String tea_brewing_instructions = getResources().getStringArray(R.array.tea_brewing_instructions)[mTeaIndex];
+        String tea_brewing_temperature_image = getResources().getStringArray(R.array.tea_brewing_temperature_images)[mTeaIndex];
+        String tea_brewing_time_image = getResources().getStringArray(R.array.tea_brewing_time_images)[mTeaIndex];
+
 
         mTeaName.setText(tea_name);
         mTeaDescription.setText(tea_description);
 
         mTeaBrewingInstructions.setText(tea_brewing_instructions);
+
+        if(tea_brewing_temperature_image != null) {
+            int temperature_image = getResources().getIdentifier(tea_brewing_temperature_image, "drawable", getContext().getPackageName());
+            mTeaBrewingTemperatureImageView.setImageResource(temperature_image);
+        }
+        if(tea_brewing_time_image != null) {
+            int time_image = getResources().getIdentifier(tea_brewing_time_image, "drawable", getContext().getPackageName());
+            mTeaBrewingTimeImageView.setImageResource(time_image);
+        }
     }
 }
