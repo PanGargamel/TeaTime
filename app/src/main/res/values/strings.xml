@@ -85,6 +85,8 @@
     <string name="tab_info">Tea info</string>
     <string name="tab_timer">Timer</string>
 
+    <string name="timer_format" translatable="false">%1$02d:%2$02d</string>
+
     <!-- Preferences -->
     <string name="pref_language_label_title">Language</string>
 
