@@ -23,6 +23,9 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
     @BindView(R.id.sb_timer)
     SeekBar mTimerSeekBar;
 
+    @BindView(R.id.tv_seekbar_title)
+    TextView mTimerSeekBarTitle;
+
     @BindView(R.id.pb_timer)
     CircularProgressBar mTimerProgressBar;
 
@@ -32,9 +35,14 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
     @BindView(R.id.btn_start_timer)
     TextView mTimerStartButton;
 
+    @BindView(R.id.btn_stop_timer)
+    TextView mTimerStopButton;
+
     private int mTeaIndex;
 
     private TimerUpdateReceiver mTimerUpdateReceiver;
+
+    Intent timerService;
 
     public TeaTimerFragment() {
         // Required empty public constructor
@@ -67,6 +75,7 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
         setDefaultSeekBarProgress();
 
         mTimerStartButton.setOnClickListener(this);
+        mTimerStopButton.setOnClickListener(this);
     }
 
     private void setDefaultSeekBarProgress() {
@@ -124,11 +133,35 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.btn_start_timer) {
-            Intent timerService = new Intent(getContext(), CountDownTimerService.class);
-            timerService.putExtra(Constants.EXTRA_INDEX, mTeaIndex);
-            timerService.putExtra(Constants.EXTRA_SECONDS, getSeekBarValue(mTimerSeekBar.getProgress()));
-            getContext().getApplicationContext().startService(timerService);
+            startBrewing();
         }
+        else if(v.getId() == R.id.btn_stop_timer) {
+            cancelBrewing();
+        }
+    }
+
+    private void startBrewing(){
+        timerService = new Intent(getContext(), CountDownTimerService.class);
+        timerService.putExtra(Constants.EXTRA_INDEX, mTeaIndex);
+        timerService.putExtra(Constants.EXTRA_SECONDS, getSeekBarValue(mTimerSeekBar.getProgress()));
+        getContext().getApplicationContext().startService(timerService);
+
+        mTimerStartButton.setVisibility(View.GONE);
+        mTimerStopButton.setVisibility(View.VISIBLE);
+        mTimerSeekBar.setVisibility(View.INVISIBLE);
+        mTimerSeekBarTitle.setVisibility(View.INVISIBLE);
+    }
+
+    private void cancelBrewing(){
+        getContext().getApplicationContext().stopService(new Intent(getContext(), CountDownTimerService.class));
+        mTimerStartButton.setVisibility(View.VISIBLE);
+        mTimerStopButton.setVisibility(View.GONE);
+        mTimerSeekBar.setVisibility(View.VISIBLE);
+        mTimerSeekBarTitle.setVisibility(View.VISIBLE);
+        mTimerProgressBar.setProgressWithAnimation(1000);
+
+        int seconds = getSeekBarValue(mTimerSeekBar.getProgress());
+        updateTimerText(seconds);
     }
 
     @Override

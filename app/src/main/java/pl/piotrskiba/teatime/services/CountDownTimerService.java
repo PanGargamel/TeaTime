@@ -18,6 +18,7 @@ import pl.piotrskiba.teatime.TeaDetailsActivity;
 public class CountDownTimerService extends Service {
 
     private int mTeaIndex = -1;
+    private CountDownTimer mCountDownTimer;
 
     public CountDownTimerService(){
     }
@@ -27,7 +28,7 @@ public class CountDownTimerService extends Service {
         mTeaIndex = intent.getIntExtra(Constants.EXTRA_INDEX, -1);
         int seconds = intent.getIntExtra(Constants.EXTRA_SECONDS, 0);
 
-        new CountDownTimer(seconds * 1000, 1000) {
+        mCountDownTimer = new CountDownTimer(seconds * 1000, 1000) {
 
             public void onTick(long millisUntilFinished) {
                 Intent timerUpdate = new Intent(Constants.TIMER_UPDATE_ACTION);
@@ -47,7 +48,8 @@ public class CountDownTimerService extends Service {
 
                 stopSelf();
             }
-        }.start();
+        };
+        mCountDownTimer.start();
 
         String tea_name = getResources().getStringArray(R.array.tea_names)[mTeaIndex];
         createNotification(tea_name, seconds);
@@ -89,5 +91,11 @@ public class CountDownTimerService extends Service {
                 .setContentIntent(pendingIntent).build();
 
         startForeground(Constants.TIMER_FOREGROUND_NOTIFICATION_ID, notification);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mCountDownTimer.cancel();
     }
 }

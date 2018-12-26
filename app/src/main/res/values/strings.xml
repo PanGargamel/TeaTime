@@ -91,6 +91,9 @@
 
     <string name="brewing_time">Brewing time</string>
 
+    <string name="start_brewing">Start brewing</string>
+    <string name="stop_brewing">Stop brewing</string>
+
     <!-- Preferences -->
     <string name="pref_language_label_title">Language</string>
 

@@ -51,6 +51,9 @@
 
     <string name="brewing_time">Czas parzenia</string>
 
+    <string name="start_brewing">Rozpocznij parzenie</string>
+    <string name="stop_brewing">Zakończ parzenie</string>
+
     <!-- Preferences -->
     <string name="pref_language_label_title">Język</string>
 

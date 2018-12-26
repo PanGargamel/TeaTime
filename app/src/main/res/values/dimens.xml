@@ -23,6 +23,8 @@
     <dimen name="timer_progressbar_stroke_width">7dp</dimen>
 
     <dimen name="timer_seekbar_margin">16dp</dimen>
+    <dimen name="timer_buttons_width">200dp</dimen>
+    <dimen name="timer_buttons_margin">16dp</dimen>
 
     <!-- drawer_view nav_header -->
     <dimen name="nav_header_height">192dp</dimen>
