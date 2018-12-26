@@ -45,6 +45,9 @@
 
     <string name="tab_info">Informacje</string>
     <string name="tab_timer">Minutnik</string>
+    <string name="default_notification_channel_name">Domyślne</string>
+
+    <string name="notification_timer_format">Pozostały czas parzenia: %1$02d:%2$02d</string>
 
     <!-- Preferences -->
     <string name="pref_language_label_title">Język</string>

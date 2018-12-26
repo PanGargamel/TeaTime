@@ -126,6 +126,7 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
     public void onClick(View v) {
         if(v.getId() == R.id.btn_start_timer) {
             Intent timerService = new Intent(getContext(), CountDownTimerService.class);
+            timerService.putExtra(Constants.EXTRA_INDEX, mTeaIndex);
             timerService.putExtra(Constants.EXTRA_SECONDS, getSeekBarValue(mTimerSeekBar.getProgress()));
             getContext().getApplicationContext().startService(timerService);
         }

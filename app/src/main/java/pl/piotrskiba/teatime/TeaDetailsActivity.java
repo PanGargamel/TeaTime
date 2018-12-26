@@ -58,6 +58,9 @@ public class TeaDetailsActivity extends AppCompatActivity {
 
             populateUi();
         }
+        if(parentIntent.hasExtra(Constants.EXTRA_OPEN_TIMER)) {
+            mViewPager.setCurrentItem(1);
+        }
     }
 
     private void populateUi(){

@@ -84,8 +84,10 @@
 
     <string name="tab_info">Tea info</string>
     <string name="tab_timer">Timer</string>
+    <string name="default_notification_channel_name">Default</string>
 
     <string name="timer_format" translatable="false">%1$02d:%2$02d</string>
+    <string name="notification_timer_format">Time left: %1$02d:%2$02d</string>
 
     <!-- Preferences -->
     <string name="pref_language_label_title">Language</string>
