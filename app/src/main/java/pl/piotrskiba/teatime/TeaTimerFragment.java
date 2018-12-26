@@ -62,15 +62,8 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
     }
 
     private void populateFragment() {
-        int max = getResources().getIntArray(R.array.tea_max_brewing_time)[mTeaIndex];
-        if(max != 0) {
-            mTimerSeekBar.setOnSeekBarChangeListener(this);
-            setDefaultSeekBarProgress();
-        }
-        else{
-            mTimerSeekBar.setVisibility(View.GONE);
-            mTimerTextView.setVisibility(View.GONE);
-        }
+        mTimerSeekBar.setOnSeekBarChangeListener(this);
+        setDefaultSeekBarProgress();
 
         mTimerStartButton.setOnClickListener(this);
     }

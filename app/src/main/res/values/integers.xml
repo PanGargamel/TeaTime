@@ -8,8 +8,8 @@
         <item>60</item>
         <item>180</item>
         <item>180</item>
-        <item />
-        <item />
+        <item>0</item>
+        <item>0</item>
     </integer-array>
 
     <integer-array name="tea_max_brewing_time">
@@ -20,8 +20,8 @@
         <item>180</item>
         <item>720</item>
         <item>300</item>
-        <item />
-        <item />
+        <item>0</item>
+        <item>0</item>
     </integer-array>
 
     <integer-array name="tea_default_brewing_time">
@@ -32,7 +32,7 @@
         <item>120</item>
         <item>395</item>
         <item>240</item>
-        <item />
-        <item />
+        <item>0</item>
+        <item>0</item>
     </integer-array>
 </resources>

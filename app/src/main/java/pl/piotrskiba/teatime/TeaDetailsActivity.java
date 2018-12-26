@@ -10,6 +10,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,11 +45,6 @@ public class TeaDetailsActivity extends AppCompatActivity {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         TeaInfoFragment teaInfoFragment = new TeaInfoFragment();
         TeaTimerFragment teaTimerFragment = new TeaTimerFragment();
-        adapter.addFragment(teaInfoFragment, getString(R.string.tab_info));
-        adapter.addFragment(teaTimerFragment, getString(R.string.tab_timer));
-        mViewPager.setAdapter(adapter);
-
-        mTabLayout.setupWithViewPager(mViewPager);
 
         Intent parentIntent = getIntent();
         if(parentIntent.hasExtra(Constants.EXTRA_INDEX)){
@@ -58,6 +54,18 @@ public class TeaDetailsActivity extends AppCompatActivity {
 
             populateUi();
         }
+
+        adapter.addFragment(teaInfoFragment, getString(R.string.tab_info));
+
+        int max = getResources().getIntArray(R.array.tea_max_brewing_time)[mTeaIndex];
+        if(max != 0) {
+            adapter.addFragment(teaTimerFragment, getString(R.string.tab_timer));
+        }
+
+        mViewPager.setAdapter(adapter);
+
+        mTabLayout.setupWithViewPager(mViewPager);
+
         if(parentIntent.hasExtra(Constants.EXTRA_OPEN_TIMER)) {
             mViewPager.setCurrentItem(1);
         }
