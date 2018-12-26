@@ -31,6 +31,7 @@ public class CountDownTimerService extends Service {
 
             public void onTick(long millisUntilFinished) {
                 Intent timerUpdate = new Intent(Constants.TIMER_UPDATE_ACTION);
+                timerUpdate.putExtra(Constants.EXTRA_INDEX, mTeaIndex);
                 timerUpdate.putExtra(Constants.EXTRA_SECONDS, (int)millisUntilFinished/1000);
                 sendBroadcast(timerUpdate);
 
@@ -40,6 +41,7 @@ public class CountDownTimerService extends Service {
 
             public void onFinish() {
                 Intent timerUpdate = new Intent(Constants.TIMER_UPDATE_ACTION);
+                timerUpdate.putExtra(Constants.EXTRA_INDEX, mTeaIndex);
                 timerUpdate.putExtra(Constants.EXTRA_SECONDS, 0);
                 sendBroadcast(timerUpdate);
 

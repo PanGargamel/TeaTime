@@ -155,8 +155,11 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(Constants.TIMER_UPDATE_ACTION)) {
-                int seconds = intent.getIntExtra(Constants.EXTRA_SECONDS, -1);
-                updateTimerText(seconds);
+                int teaIndex = intent.getIntExtra(Constants.EXTRA_INDEX, -1);
+                if(teaIndex == mTeaIndex) {
+                    int seconds = intent.getIntExtra(Constants.EXTRA_SECONDS, -1);
+                    updateTimerText(seconds);
+                }
             }
         }
     }
