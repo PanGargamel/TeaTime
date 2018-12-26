@@ -85,7 +85,12 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
         int min = getResources().getIntArray(R.array.tea_min_brewing_time)[mTeaIndex];
         int max = getResources().getIntArray(R.array.tea_max_brewing_time)[mTeaIndex];
 
-        return (int)(min + (float)progress/100 * (max-min));
+        progress = (int)((float)progress/100 * (max-min));
+        progress /= 5;
+        progress *= 5;
+        progress += min;
+
+        return progress;
     }
 
     @Override
