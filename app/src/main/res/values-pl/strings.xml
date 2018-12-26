@@ -49,6 +49,8 @@
 
     <string name="notification_timer_format">Pozostały czas parzenia: %1$02d:%2$02d</string>
 
+    <string name="brewing_time">Czas parzenia</string>
+
     <!-- Preferences -->
     <string name="pref_language_label_title">Język</string>
 

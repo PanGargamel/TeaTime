@@ -89,6 +89,8 @@
     <string name="timer_format" translatable="false">%1$02d:%2$02d</string>
     <string name="notification_timer_format">Time left: %1$02d:%2$02d</string>
 
+    <string name="brewing_time">Brewing time</string>
+
     <!-- Preferences -->
     <string name="pref_language_label_title">Language</string>
 

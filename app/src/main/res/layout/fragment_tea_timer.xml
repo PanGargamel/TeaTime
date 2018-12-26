@@ -32,10 +32,19 @@
             android:layout_gravity="center"/>
     </FrameLayout>
 
+    <TextView
+        android:text="@string/brewing_time"
+        android:textSize="@dimen/description_text_size"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/title_padding"
+        android:textAlignment="center"/>
     <SeekBar
         android:id="@+id/sb_timer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/timer_seekbar_margin"
+        android:layout_marginRight="@dimen/timer_seekbar_margin"/>
 
     <Button
         android:id="@+id/btn_start_timer"
