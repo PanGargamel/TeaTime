@@ -5,4 +5,6 @@
     <color name="colorAccent">#CDDC39</color>
 
     <color name="toolbar_text">#fff</color>
+
+    <color name="progressbar_background">#c9c9c9</color>
 </resources>

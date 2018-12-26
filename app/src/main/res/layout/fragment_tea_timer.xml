@@ -3,20 +3,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".TeaTimerFragment"
     android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/timer_progressbar_height"
+        android:layout_margin="@dimen/timer_margin">
+        <com.mikhaellopez.circularprogressbar.CircularProgressBar
+            android:id="@+id/pb_timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cpb_progress_max="1000"
+            app:cpb_progress="1000"
+            app:cpb_background_progressbar_color="@color/progressbar_background"
+            app:cpb_background_progressbar_width="@dimen/timer_progressbar_stroke_width"
+            app:cpb_progressbar_color="@color/colorPrimary"
+            app:cpb_progressbar_width="@dimen/timer_progressbar_stroke_width"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/tv_timer"
+            android:textSize="@dimen/timer_text_size"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:layout_gravity="center"/>
+    </FrameLayout>
 
     <SeekBar
         android:id="@+id/sb_timer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/tv_timer"
-        android:textSize="@dimen/timer_text_size"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"/>
 
     <Button
         android:id="@+id/btn_start_timer"

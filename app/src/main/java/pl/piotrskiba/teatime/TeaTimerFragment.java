@@ -6,15 +6,13 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
+import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,8 +23,11 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
     @BindView(R.id.sb_timer)
     SeekBar mTimerSeekBar;
 
+    @BindView(R.id.pb_timer)
+    CircularProgressBar mTimerProgressBar;
+
     @BindView(R.id.tv_timer)
-     TextView mTimerTextView;
+    TextView mTimerTextView;
 
     @BindView(R.id.btn_start_timer)
     TextView mTimerStartButton;
@@ -157,6 +158,10 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
                 if(teaIndex == mTeaIndex) {
                     int seconds = intent.getIntExtra(Constants.EXTRA_SECONDS, -1);
                     updateTimerText(seconds);
+
+                    int total = getSeekBarValue(mTimerSeekBar.getProgress());
+                    int progress = (int)((float)seconds/total*1000);
+                    mTimerProgressBar.setProgress(progress);
                 }
             }
         }

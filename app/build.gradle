@@ -39,4 +39,7 @@ dependencies {
 
     // Preferences
     implementation 'com.android.support:preference-v7:27.1.1'
+
+    // Circular ProgressBars
+    implementation 'com.mikhaellopez:circularprogressbar:2.0.0'
 }

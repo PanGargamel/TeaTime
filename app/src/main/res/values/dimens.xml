@@ -17,7 +17,10 @@
     <dimen name="brewing_between_image_instructions_padding">32dp</dimen>
     <dimen name="brewing_instructions_padding_top">8dp</dimen>
 
-    <dimen name="timer_text_size">56sp</dimen>
+    <dimen name="timer_margin">16dp</dimen>
+    <dimen name="timer_text_size">48sp</dimen>
+    <dimen name="timer_progressbar_height">220dp</dimen>
+    <dimen name="timer_progressbar_stroke_width">7dp</dimen>
 
     <!-- drawer_view nav_header -->
     <dimen name="nav_header_height">192dp</dimen>
