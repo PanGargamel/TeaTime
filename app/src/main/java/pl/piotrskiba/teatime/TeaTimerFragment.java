@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -33,16 +34,22 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
     TextView mTimerTextView;
 
     @BindView(R.id.btn_start_timer)
-    TextView mTimerStartButton;
+    Button mTimerStartButton;
 
     @BindView(R.id.btn_stop_timer)
-    TextView mTimerStopButton;
+    Button mTimerStopButton;
+
+    @BindView(R.id.btn_disable_alarm)
+    Button mDisableAlarmButton;
+
 
     private int mTeaIndex;
 
     private TimerUpdateReceiver mTimerUpdateReceiver;
 
     Intent timerService;
+
+    public boolean showAlarmLayout = false;
 
     public TeaTimerFragment() {
         // Required empty public constructor
@@ -72,10 +79,14 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
 
     private void populateFragment() {
         mTimerSeekBar.setOnSeekBarChangeListener(this);
-        setDefaultSeekBarProgress();
+        if(showAlarmLayout)
+            showAlarmLayout();
+        else
+            setDefaultSeekBarProgress();
 
         mTimerStartButton.setOnClickListener(this);
         mTimerStopButton.setOnClickListener(this);
+        mDisableAlarmButton.setOnClickListener(this);
     }
 
     private void setDefaultSeekBarProgress() {
@@ -138,6 +149,9 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
         else if(v.getId() == R.id.btn_stop_timer) {
             cancelBrewing();
         }
+        else if(v.getId() == R.id.btn_disable_alarm){
+            throw new UnsupportedOperationException("not implemented yet");
+        }
     }
 
     private void startBrewing(){
@@ -162,6 +176,17 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
 
         int seconds = getSeekBarValue(mTimerSeekBar.getProgress());
         updateTimerText(seconds);
+    }
+
+    private void showAlarmLayout(){
+        updateTimerText(0);
+        mTimerProgressBar.setProgress(0);
+
+        mTimerStartButton.setVisibility(View.GONE);
+        mTimerStopButton.setVisibility(View.GONE);
+        mDisableAlarmButton.setVisibility(View.VISIBLE);
+        mTimerSeekBar.setVisibility(View.INVISIBLE);
+        mTimerSeekBarTitle.setVisibility(View.INVISIBLE);
     }
 
     @Override

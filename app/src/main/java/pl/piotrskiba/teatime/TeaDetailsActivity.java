@@ -41,6 +41,8 @@ public class TeaDetailsActivity extends AppCompatActivity {
 
     int mTeaIndex;
 
+    TeaTimerFragment mTeaTimerFragment;
+
     Vibrator mVibrator;
     MediaPlayer mMediaPlayer = new MediaPlayer();
 
@@ -85,9 +87,9 @@ public class TeaDetailsActivity extends AppCompatActivity {
 
         int max = getResources().getIntArray(R.array.tea_max_brewing_time)[mTeaIndex];
         if(max != 0) {
-            TeaTimerFragment teaTimerFragment = new TeaTimerFragment();
-            teaTimerFragment.setTeaIndex(mTeaIndex);
-            adapter.addFragment(teaTimerFragment, getString(R.string.tab_timer));
+            mTeaTimerFragment = new TeaTimerFragment();
+            mTeaTimerFragment.setTeaIndex(mTeaIndex);
+            adapter.addFragment(mTeaTimerFragment, getString(R.string.tab_timer));
         }
 
         mViewPager.setAdapter(adapter);
@@ -100,6 +102,8 @@ public class TeaDetailsActivity extends AppCompatActivity {
         setWindowFlags();
         startVibrator();
         startMediaPlayer();
+
+        mTeaTimerFragment.showAlarmLayout = true;
     }
 
     private void setWindowFlags(){

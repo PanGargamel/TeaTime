@@ -62,5 +62,13 @@
         android:layout_gravity="center_horizontal"
         android:layout_margin="@dimen/timer_buttons_margin"
         android:visibility="gone"/>
+    <Button
+        android:id="@+id/btn_disable_alarm"
+        android:text="@string/disable_alarm"
+        android:layout_width="@dimen/timer_buttons_width"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="@dimen/timer_buttons_margin"
+        android:visibility="gone"/>
 
 </LinearLayout>

@@ -53,6 +53,7 @@
 
     <string name="start_brewing">Rozpocznij parzenie</string>
     <string name="stop_brewing">Zakończ parzenie</string>
+    <string name="disable_alarm">Wyłącz alarm</string>
 
     <!-- Preferences -->
     <string name="pref_language_label_title">Język</string>

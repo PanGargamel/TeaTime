@@ -93,6 +93,7 @@
 
     <string name="start_brewing">Start brewing</string>
     <string name="stop_brewing">Stop brewing</string>
+    <string name="disable_alarm">Disable alarm</string>
 
     <!-- Preferences -->
     <string name="pref_language_label_title">Language</string>
