@@ -51,78 +51,92 @@ public class TeaDetailsActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        mVibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-
-        this.setSupportActionBar(mToolbar);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        TeaInfoFragment teaInfoFragment = new TeaInfoFragment();
-        TeaTimerFragment teaTimerFragment = new TeaTimerFragment();
-
         Intent parentIntent = getIntent();
-        if(parentIntent.hasExtra(Constants.EXTRA_INDEX)){
-            mTeaIndex = parentIntent.getIntExtra(Constants.EXTRA_INDEX, -1);
-            teaInfoFragment.setTeaIndex(mTeaIndex);
-            teaTimerFragment.setTeaIndex(mTeaIndex);
+        mTeaIndex = parentIntent.getIntExtra(Constants.EXTRA_INDEX, -1);
 
-            populateUi();
-        }
+        setupActionBar();
 
-        adapter.addFragment(teaInfoFragment, getString(R.string.tab_info));
-
-        int max = getResources().getIntArray(R.array.tea_max_brewing_time)[mTeaIndex];
-        if(max != 0) {
-            adapter.addFragment(teaTimerFragment, getString(R.string.tab_timer));
-        }
-
-        mViewPager.setAdapter(adapter);
-
-        mTabLayout.setupWithViewPager(mViewPager);
+        setupViewPager();
 
         if(parentIntent.hasExtra(Constants.EXTRA_OPEN_TIMER)) {
             mViewPager.setCurrentItem(1);
         }
 
         if(parentIntent.hasExtra(Constants.EXTRA_START_ALARM)) {
-            Window wnd = getWindow();
-            wnd.addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
-            wnd.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-            wnd.addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
+            startAlarm();
+        }
+    }
 
-            if(mVibrator.hasVibrator()) {
-                long[] pattern = new long[]{0, 500, 500};
+    private void setupActionBar(){
+        this.setSupportActionBar(mToolbar);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    mVibrator.vibrate(VibrationEffect.createWaveform(pattern, 0));
-                } else {
-                    mVibrator.vibrate(pattern, 0);
-                }
-            }
+        String tea_name = getResources().getStringArray(R.array.tea_names)[mTeaIndex];
+        getSupportActionBar().setTitle(tea_name);
+    }
 
-            try {
-                Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
-                mMediaPlayer.setDataSource(this, uri);
+    private void setupViewPager(){
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-                final AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-                if (audioManager.getStreamVolume(AudioManager.STREAM_ALARM) != 0) {
-                    mMediaPlayer.setAudioStreamType(AudioManager.STREAM_ALARM);
-                    mMediaPlayer.setLooping(true);
-                    mMediaPlayer.prepare();
-                    mMediaPlayer.start();
-                }
-            }
-            catch(Exception e){
-                Log.e(this.getClass().getName(), "Can't start media player");
+        TeaInfoFragment teaInfoFragment = new TeaInfoFragment();
+        teaInfoFragment.setTeaIndex(mTeaIndex);
+        adapter.addFragment(teaInfoFragment, getString(R.string.tab_info));
+
+        int max = getResources().getIntArray(R.array.tea_max_brewing_time)[mTeaIndex];
+        if(max != 0) {
+            TeaTimerFragment teaTimerFragment = new TeaTimerFragment();
+            teaTimerFragment.setTeaIndex(mTeaIndex);
+            adapter.addFragment(teaTimerFragment, getString(R.string.tab_timer));
+        }
+
+        mViewPager.setAdapter(adapter);
+        mTabLayout.setupWithViewPager(mViewPager);
+    }
+
+    private void startAlarm(){
+        mVibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+
+        setWindowFlags();
+        startVibrator();
+        startMediaPlayer();
+    }
+
+    private void setWindowFlags(){
+        Window wnd = getWindow();
+        wnd.addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
+        wnd.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        wnd.addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
+    }
+
+    private void startVibrator(){
+        if(mVibrator.hasVibrator()) {
+            long[] pattern = new long[]{0, 500, 500};
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                mVibrator.vibrate(VibrationEffect.createWaveform(pattern, 0));
+            } else {
+                mVibrator.vibrate(pattern, 0);
             }
         }
     }
 
-    private void populateUi(){
-        String tea_name = getResources().getStringArray(R.array.tea_names)[mTeaIndex];
+    private void startMediaPlayer(){
+        try {
+            Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+            mMediaPlayer.setDataSource(this, uri);
 
-        getSupportActionBar().setTitle(tea_name);
+            final AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+            if (audioManager.getStreamVolume(AudioManager.STREAM_ALARM) != 0) {
+                mMediaPlayer.setAudioStreamType(AudioManager.STREAM_ALARM);
+                mMediaPlayer.setLooping(true);
+                mMediaPlayer.prepare();
+                mMediaPlayer.start();
+            }
+        }
+        catch(Exception e){
+            Log.e(this.getClass().getName(), "Can't start media player");
+        }
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
