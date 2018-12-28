@@ -14,7 +14,6 @@ import android.support.v4.app.NotificationCompat;
 import pl.piotrskiba.teatime.Constants;
 import pl.piotrskiba.teatime.R;
 import pl.piotrskiba.teatime.TeaDetailsActivity;
-import pl.piotrskiba.teatime.TimerFinishedActivity;
 
 public class CountDownTimerService extends Service {
 
@@ -47,8 +46,11 @@ public class CountDownTimerService extends Service {
                 timerUpdate.putExtra(Constants.EXTRA_SECONDS, 0);
                 sendBroadcast(timerUpdate);
 
-                Intent timerFinishedIntent = new Intent(getApplicationContext(), TimerFinishedActivity.class);
-                timerFinishedIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                Intent timerFinishedIntent = new Intent(getApplicationContext(), TeaDetailsActivity.class);
+                timerFinishedIntent.putExtra(Constants.EXTRA_INDEX, mTeaIndex);
+                timerFinishedIntent.putExtra(Constants.EXTRA_OPEN_TIMER, true);
+                timerFinishedIntent.putExtra(Constants.EXTRA_START_ALARM, true);
+                timerFinishedIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(timerFinishedIntent);
 
                 stopSelf();
