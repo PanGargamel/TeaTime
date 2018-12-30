@@ -6,8 +6,10 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.CountDownTimer;
 import android.os.IBinder;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 
@@ -38,6 +40,12 @@ public class CountDownTimerService extends Service {
 
                 String tea_name = getResources().getStringArray(R.array.tea_names)[mTeaIndex];
                 createNotification(tea_name, (int)millisUntilFinished/1000);
+
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                String tea_id = getResources().getStringArray(R.array.tea_ids)[mTeaIndex];
+                editor.putInt(getString(R.string.pref_timeleft_key, tea_id), (int)millisUntilFinished/1000);
+                editor.commit();
             }
 
             public void onFinish() {
@@ -52,6 +60,12 @@ public class CountDownTimerService extends Service {
                 timerFinishedIntent.putExtra(Constants.EXTRA_START_ALARM, true);
                 timerFinishedIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(timerFinishedIntent);
+
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                String tea_id = getResources().getStringArray(R.array.tea_ids)[mTeaIndex];
+                editor.putInt(getString(R.string.pref_timeleft_key, tea_id), 0);
+                editor.commit();
 
                 stopSelf();
             }

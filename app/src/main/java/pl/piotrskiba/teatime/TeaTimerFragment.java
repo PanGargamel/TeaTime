@@ -1,10 +1,13 @@
 package pl.piotrskiba.teatime;
 
+import android.app.ActivityManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,6 +47,7 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
 
 
     private int mTeaIndex;
+    private int mTotalBrewingTime;
 
     private TimerUpdateReceiver mTimerUpdateReceiver;
 
@@ -79,10 +83,28 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
 
     private void populateFragment() {
         mTimerSeekBar.setOnSeekBarChangeListener(this);
-        if(showAlarmLayout)
+        if(showAlarmLayout) {
             showAlarmLayout();
-        else
+        }
+        else if(isServiceRunning(CountDownTimerService.class)) {
+            String tea_id = getResources().getStringArray(R.array.tea_ids)[mTeaIndex];
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+            int timeleft = sharedPreferences.getInt(getString(R.string.pref_timeleft_key, tea_id), 0);
+            if(timeleft > 0){
+                showBrewingLayout();
+
+                updateTimerText(timeleft);
+
+                int total = sharedPreferences.getInt(getString(R.string.pref_total_time_key, tea_id), 1);
+                mTotalBrewingTime = total;
+
+                int progress = (int)((float)timeleft/mTotalBrewingTime*1000);
+                mTimerProgressBar.setProgress(progress);
+            }
+        }
+        else {
             setDefaultSeekBarProgress();
+        }
 
         mTimerStartButton.setOnClickListener(this);
         mTimerStopButton.setOnClickListener(this);
@@ -155,27 +177,43 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
     }
 
     private void startBrewing(){
+        mTotalBrewingTime = getSeekBarValue(mTimerSeekBar.getProgress());
+
         timerService = new Intent(getContext(), CountDownTimerService.class);
         timerService.putExtra(Constants.EXTRA_INDEX, mTeaIndex);
-        timerService.putExtra(Constants.EXTRA_SECONDS, getSeekBarValue(mTimerSeekBar.getProgress()));
+        timerService.putExtra(Constants.EXTRA_SECONDS, mTotalBrewingTime);
         getContext().getApplicationContext().startService(timerService);
 
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext().getApplicationContext());
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        String tea_id = getResources().getStringArray(R.array.tea_ids)[mTeaIndex];
+        editor.putInt(getString(R.string.pref_total_time_key, tea_id), mTotalBrewingTime);
+        editor.commit();
+
+        showBrewingLayout();
+    }
+
+    private void cancelBrewing(){
+        getContext().getApplicationContext().stopService(new Intent(getContext(), CountDownTimerService.class));
+        showDefaultLayout();
+
+        int seconds = getSeekBarValue(mTimerSeekBar.getProgress());
+        updateTimerText(seconds);
+    }
+
+    public void showBrewingLayout(){
         mTimerStartButton.setVisibility(View.GONE);
         mTimerStopButton.setVisibility(View.VISIBLE);
         mTimerSeekBar.setVisibility(View.INVISIBLE);
         mTimerSeekBarTitle.setVisibility(View.INVISIBLE);
     }
 
-    private void cancelBrewing(){
-        getContext().getApplicationContext().stopService(new Intent(getContext(), CountDownTimerService.class));
+    private void showDefaultLayout(){
         mTimerStartButton.setVisibility(View.VISIBLE);
         mTimerStopButton.setVisibility(View.GONE);
         mTimerSeekBar.setVisibility(View.VISIBLE);
         mTimerSeekBarTitle.setVisibility(View.VISIBLE);
         mTimerProgressBar.setProgressWithAnimation(1000);
-
-        int seconds = getSeekBarValue(mTimerSeekBar.getProgress());
-        updateTimerText(seconds);
     }
 
     private void showAlarmLayout(){
@@ -187,6 +225,16 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
         mDisableAlarmButton.setVisibility(View.VISIBLE);
         mTimerSeekBar.setVisibility(View.INVISIBLE);
         mTimerSeekBarTitle.setVisibility(View.INVISIBLE);
+    }
+
+    private boolean isServiceRunning(Class serviceClass) {
+        ActivityManager manager = (ActivityManager) getContext().getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceClass.getName().equals(service.service.getClassName())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
@@ -217,8 +265,7 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
                     int seconds = intent.getIntExtra(Constants.EXTRA_SECONDS, -1);
                     updateTimerText(seconds);
 
-                    int total = getSeekBarValue(mTimerSeekBar.getProgress());
-                    int progress = (int)((float)seconds/total*1000);
+                    int progress = (int)((float)seconds/mTotalBrewingTime*1000);
                     mTimerProgressBar.setProgress(progress);
                 }
             }
