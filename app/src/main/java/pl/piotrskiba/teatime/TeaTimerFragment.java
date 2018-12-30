@@ -197,6 +197,12 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
         getContext().getApplicationContext().stopService(new Intent(getContext(), CountDownTimerService.class));
         showDefaultLayout();
 
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext().getApplicationContext());
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        String tea_id = getResources().getStringArray(R.array.tea_ids)[mTeaIndex];
+        editor.putInt(getString(R.string.pref_timeleft_key, tea_id), 0);
+        editor.commit();
+
         int seconds = getSeekBarValue(mTimerSeekBar.getProgress());
         updateTimerText(seconds);
     }
