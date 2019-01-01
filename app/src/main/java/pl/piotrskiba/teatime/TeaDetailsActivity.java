@@ -44,7 +44,7 @@ public class TeaDetailsActivity extends AppCompatActivity {
     TeaTimerFragment mTeaTimerFragment;
 
     Vibrator mVibrator;
-    MediaPlayer mMediaPlayer = new MediaPlayer();
+    MediaPlayer mMediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,6 +132,8 @@ public class TeaDetailsActivity extends AppCompatActivity {
     }
 
     private void startMediaPlayer(){
+        mMediaPlayer = new MediaPlayer();
+
         try {
             Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
             mMediaPlayer.setDataSource(this, uri);
