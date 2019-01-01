@@ -93,6 +93,7 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
             int timeleft = sharedPreferences.getInt(getString(R.string.pref_timeleft_key, tea_id), 0);
             if(timeleft > 0){
+                setDefaultSeekBarProgress();
                 showBrewingLayout();
 
                 updateTimerText(timeleft);
@@ -102,9 +103,6 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
 
                 int progress = (int)((float)timeleft/mTotalBrewingTime*1000);
                 mTimerProgressBar.setProgress(progress);
-            }
-            else{
-                setDefaultSeekBarProgress();
             }
         }
         else {
