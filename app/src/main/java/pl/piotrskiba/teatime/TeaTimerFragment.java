@@ -175,7 +175,9 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
             cancelBrewing();
         }
         else if(v.getId() == R.id.btn_disable_alarm){
-            throw new UnsupportedOperationException("not implemented yet");
+            ((TeaDetailsActivity) getContext()).stopAlarm();
+            setDefaultSeekBarProgress();
+            showDefaultLayout();
         }
     }
 
@@ -213,6 +215,7 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
     public void showBrewingLayout(){
         mTimerStartButton.setVisibility(View.GONE);
         mTimerStopButton.setVisibility(View.VISIBLE);
+        mDisableAlarmButton.setVisibility(View.GONE);
         mTimerSeekBar.setVisibility(View.INVISIBLE);
         mTimerSeekBarTitle.setVisibility(View.INVISIBLE);
     }
@@ -220,6 +223,7 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
     private void showDefaultLayout(){
         mTimerStartButton.setVisibility(View.VISIBLE);
         mTimerStopButton.setVisibility(View.GONE);
+        mDisableAlarmButton.setVisibility(View.GONE);
         mTimerSeekBar.setVisibility(View.VISIBLE);
         mTimerSeekBarTitle.setVisibility(View.VISIBLE);
         mTimerProgressBar.setProgressWithAnimation(1000);

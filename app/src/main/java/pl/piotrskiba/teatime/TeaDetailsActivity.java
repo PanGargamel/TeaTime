@@ -106,6 +106,12 @@ public class TeaDetailsActivity extends AppCompatActivity {
         mTeaTimerFragment.showAlarmLayout = true;
     }
 
+    public void stopAlarm(){
+        mVibrator.cancel();
+        if(mMediaPlayer.isPlaying())
+            mMediaPlayer.stop();
+    }
+
     private void setWindowFlags(){
         Window wnd = getWindow();
         wnd.addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
