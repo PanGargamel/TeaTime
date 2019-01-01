@@ -96,7 +96,7 @@ public class TeaDetailsActivity extends AppCompatActivity {
         mTabLayout.setupWithViewPager(mViewPager);
     }
 
-    private void startAlarm(){
+    public void startAlarm(){
         mVibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
 
         setWindowFlags();

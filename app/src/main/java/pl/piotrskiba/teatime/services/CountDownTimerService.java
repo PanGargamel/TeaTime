@@ -16,6 +16,7 @@ import android.support.v4.app.NotificationCompat;
 import pl.piotrskiba.teatime.Constants;
 import pl.piotrskiba.teatime.R;
 import pl.piotrskiba.teatime.TeaDetailsActivity;
+import pl.piotrskiba.teatime.TeaTimerFragment;
 
 public class CountDownTimerService extends Service {
 
@@ -49,23 +50,26 @@ public class CountDownTimerService extends Service {
             }
 
             public void onFinish() {
-                Intent timerUpdate = new Intent(Constants.TIMER_UPDATE_ACTION);
-                timerUpdate.putExtra(Constants.EXTRA_INDEX, mTeaIndex);
-                timerUpdate.putExtra(Constants.EXTRA_SECONDS, 0);
-                sendBroadcast(timerUpdate);
-
-                Intent timerFinishedIntent = new Intent(getApplicationContext(), TeaDetailsActivity.class);
-                timerFinishedIntent.putExtra(Constants.EXTRA_INDEX, mTeaIndex);
-                timerFinishedIntent.putExtra(Constants.EXTRA_OPEN_TIMER, true);
-                timerFinishedIntent.putExtra(Constants.EXTRA_START_ALARM, true);
-                timerFinishedIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(timerFinishedIntent);
-
                 SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 String tea_id = getResources().getStringArray(R.array.tea_ids)[mTeaIndex];
                 editor.putInt(getString(R.string.pref_timeleft_key, tea_id), 0);
                 editor.commit();
+
+                if(TeaTimerFragment.inForeground) {
+                    Intent timerUpdate = new Intent(Constants.TIMER_UPDATE_ACTION);
+                    timerUpdate.putExtra(Constants.EXTRA_INDEX, mTeaIndex);
+                    timerUpdate.putExtra(Constants.EXTRA_SECONDS, 0);
+                    sendBroadcast(timerUpdate);
+                }
+                else {
+                    Intent timerFinishedIntent = new Intent(getApplicationContext(), TeaDetailsActivity.class);
+                    timerFinishedIntent.putExtra(Constants.EXTRA_INDEX, mTeaIndex);
+                    timerFinishedIntent.putExtra(Constants.EXTRA_OPEN_TIMER, true);
+                    timerFinishedIntent.putExtra(Constants.EXTRA_START_ALARM, true);
+                    timerFinishedIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(timerFinishedIntent);
+                }
 
                 stopSelf();
             }

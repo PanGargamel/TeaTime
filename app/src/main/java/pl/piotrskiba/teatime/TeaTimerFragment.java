@@ -55,6 +55,8 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
 
     public boolean showAlarmLayout = false;
 
+    public static boolean inForeground = true;
+
     public TeaTimerFragment() {
         // Required empty public constructor
     }
@@ -258,6 +260,8 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
             mTimerUpdateReceiver = new TimerUpdateReceiver();
         IntentFilter intentFilter = new IntentFilter(Constants.TIMER_UPDATE_ACTION);
         getContext().registerReceiver(mTimerUpdateReceiver, intentFilter);
+
+        inForeground = true;
     }
 
     @Override
@@ -266,6 +270,8 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
 
         if(mTimerUpdateReceiver != null)
             getContext().unregisterReceiver(mTimerUpdateReceiver);
+
+        inForeground = false;
     }
 
     private class TimerUpdateReceiver extends BroadcastReceiver {
@@ -276,10 +282,17 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
                 int teaIndex = intent.getIntExtra(Constants.EXTRA_INDEX, -1);
                 if(teaIndex == mTeaIndex) {
                     int seconds = intent.getIntExtra(Constants.EXTRA_SECONDS, -1);
-                    updateTimerText(seconds);
 
-                    int progress = (int)((float)seconds/mTotalBrewingTime*1000);
-                    mTimerProgressBar.setProgress(progress);
+                    if(seconds == 0){
+                        showAlarmLayout();
+                        ((TeaDetailsActivity) getContext()).startAlarm();
+                    }
+                    else {
+                        updateTimerText(seconds);
+
+                        int progress = (int) ((float) seconds / mTotalBrewingTime * 1000);
+                        mTimerProgressBar.setProgress(progress);
+                    }
                 }
             }
         }
