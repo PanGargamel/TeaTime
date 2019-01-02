@@ -110,6 +110,9 @@ public class TeaDetailsActivity extends AppCompatActivity {
         mVibrator.cancel();
         if(mMediaPlayer.isPlaying())
             mMediaPlayer.stop();
+
+        Window wnd = getWindow();
+        wnd.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
     private void setWindowFlags(){
