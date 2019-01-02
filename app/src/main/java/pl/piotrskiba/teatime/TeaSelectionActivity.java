@@ -34,9 +34,7 @@ public class TeaSelectionActivity extends AppCompatActivity implements TeaSelect
     @BindView(R.id.rv_tea_list)
     RecyclerView mTeaList;
 
-    GridLayoutManager mLayoutManager;
-
-    Context mContext;
+    private Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,9 +55,8 @@ public class TeaSelectionActivity extends AppCompatActivity implements TeaSelect
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
 
-        mLayoutManager = new GridLayoutManager(this, 3);
-
-        mTeaList.setLayoutManager(mLayoutManager);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 3);
+        mTeaList.setLayoutManager(layoutManager);
         mTeaList.setHasFixedSize(true);
 
         TeaListAdapter adapter = new TeaListAdapter(this, this);

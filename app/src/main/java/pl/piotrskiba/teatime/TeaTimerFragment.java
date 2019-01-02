@@ -51,8 +51,6 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
 
     private TimerUpdateReceiver mTimerUpdateReceiver;
 
-    Intent timerService;
-
     public boolean showAlarmLayout = false;
 
     public static boolean inForeground = true;
@@ -98,8 +96,7 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
 
                 updateTimerText(timeleft);
 
-                int total = sharedPreferences.getInt(getString(R.string.pref_total_time_key, tea_id), 1);
-                mTotalBrewingTime = total;
+                mTotalBrewingTime = sharedPreferences.getInt(getString(R.string.pref_total_time_key, tea_id), 1);
 
                 int progress = (int)((float)timeleft/mTotalBrewingTime*1000);
                 mTimerProgressBar.setProgress(progress);
@@ -187,7 +184,7 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
     private void startBrewing(){
         mTotalBrewingTime = getSeekBarValue(mTimerSeekBar.getProgress());
 
-        timerService = new Intent(getContext(), CountDownTimerService.class);
+        Intent timerService = new Intent(getContext(), CountDownTimerService.class);
         timerService.putExtra(Constants.EXTRA_INDEX, mTeaIndex);
         timerService.putExtra(Constants.EXTRA_SECONDS, mTotalBrewingTime);
         getContext().getApplicationContext().startService(timerService);
@@ -215,7 +212,7 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
         updateTimerText(seconds);
     }
 
-    public void showBrewingLayout(){
+    private void showBrewingLayout(){
         mTimerStartButton.setVisibility(View.GONE);
         mTimerStopButton.setVisibility(View.VISIBLE);
         mDisableAlarmButton.setVisibility(View.GONE);

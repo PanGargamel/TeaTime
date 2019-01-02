@@ -33,8 +33,6 @@
             android:name=".services.CountDownTimerService"
             android:enabled="true"
             android:exported="false" />
-
-        <activity android:name=".TimerFinishedActivity"></activity>
     </application>
 
 </manifest>

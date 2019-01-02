@@ -71,15 +71,15 @@
     <string name="brewing_instructions">Additional brewing instructions:</string>
 
     <string-array name="tea_brewing_instructions">
-        <item>- use one teaspoon per 120-150 ml of water</item>
-        <item>- use one teaspoon per 120-150 ml of water</item>
-        <item>- use one teaspoon per 120-150 ml of water\n- your tea should be ready in 2-3 minutes\n- extend the brewing time to 4 minutes if you don\'t want your tea to be stimulating</item>
-        <item>- use one teaspoon per 120-150 ml of water</item>
-        <item>- use one teaspoon per 120-150 ml of water</item>
-        <item>- use 7-10 peppermint leaves (one tea bag) per 250 ml of water\n- crush the peppermint if you are using a fresh leaves - it will help to release the flavor and aroma of the herb\n- brew your tea with 96°C water\n- your tea should be ready in 7-12 minutes if you are using fresh peppermint leaves, or in 3-10 minutes if you are making a tea from a teabag</item>
-        <item>- use one teaspoon per 120-150 ml of water</item>
-        <item>- pour the yerba mate into the cup (1/2 - 3/4 of its volume)\n- shake the cup a bit (holding it upside-down) to redistribute the lighter, more powdery leaves to the top\n- tilt the gourd until all the mate is leaning against one side wall of the cup, and add a little bit of a cold water\n- insert your bombilla into the empty space\n- brew your yerba mate with 70-80°C water\n- your yerba mate should be ready - be sure to refill it with water as needed\n- remember not to jiggle the bombilla and stir the herb - you\'ll end up clogging the bombilla and allowing herb into the straw!</item>
-        <item>- use a half to one teaspoon (1-2 matcha bamboo teaspoons) of matcha per 150 ml of water\n- add a little bit of 70-85°C water\n- whisk vigorously using a teaspoon or a milk frother until the tea is frothy\n- fill the rest of a cup with water - your tea is ready!</item>
+        <item>– use one teaspoon per 120–150 ml of water</item>
+        <item>– use one teaspoon per 120–150 ml of water</item>
+        <item>– use one teaspoon per 120–150 ml of water\n– your tea should be ready in 2–3 minutes\n- extend the brewing time to 4 minutes if you don\'t want your tea to be stimulating</item>
+        <item>– use one teaspoon per 120–150 ml of water</item>
+        <item>– use one teaspoon per 120–150 ml of water</item>
+        <item>– use 7–10 peppermint leaves (one tea bag) per 250 ml of water\n– crush the peppermint if you are using a fresh leaves – it will help to release the flavor and aroma of the herb\n– brew your tea with 96°C water\n– your tea should be ready in 7–12 minutes if you are using fresh peppermint leaves, or in 3–10 minutes if you are making a tea from a teabag</item>
+        <item>– use one teaspoon per 120–150 ml of water</item>
+        <item><![CDATA[– pour the yerba mate into the cup (&#189; – &#190; of its volume)\n– shake the cup a bit (holding it upside–down) to redistribute the lighter, more powdery leaves to the top\n– tilt the gourd until all the mate is leaning against one side wall of the cup, and add a little bit of a cold water\n– insert your bombilla into the empty space\n– brew your yerba mate with 70–80°C water\n- your yerba mate should be ready - be sure to refill it with water as needed\n- remember not to jiggle the bombilla and stir the herb - you\'ll end up clogging the bombilla and allowing herb into the straw!]]></item>
+        <item>– use a half to one teaspoon (1–2 matcha bamboo teaspoons) of matcha per 150 ml of water\n– add a little bit of 70–85°C water\n- whisk vigorously using a teaspoon or a milk frother until the tea is frothy\n- fill the rest of a cup with water - your tea is ready!</item>
     </string-array>
 
     <string name="tab_info">Tea info</string>
@@ -113,5 +113,11 @@
 
     <!-- snackbars, toasts -->
     <string name="language_changed">Application language will be changed after leaving the settings.</string>
+
+    <!-- content descriptions -->
+    <string name="instructions_temperature_content_description">Brewing temperature icon</string>
+    <string name="instructions_time_content_description">Brewing time icon</string>
+    <string name="instructions_drink_content_description">Brewing finished icon</string>
+    <string name="tea_image_content_description">Tea icon</string>
 
 </resources>

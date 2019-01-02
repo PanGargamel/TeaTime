@@ -39,12 +39,12 @@ public class TeaDetailsActivity extends AppCompatActivity {
     @BindView(R.id.tabs)
     TabLayout mTabLayout;
 
-    int mTeaIndex;
+    private int mTeaIndex;
 
-    TeaTimerFragment mTeaTimerFragment;
+    private TeaTimerFragment mTeaTimerFragment;
 
-    Vibrator mVibrator;
-    MediaPlayer mMediaPlayer;
+    private Vibrator mVibrator;
+    private MediaPlayer mMediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

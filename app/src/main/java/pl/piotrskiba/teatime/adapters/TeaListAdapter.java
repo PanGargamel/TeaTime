@@ -16,11 +16,11 @@ import pl.piotrskiba.teatime.interfaces.TeaSelectedListener;
 
 public class TeaListAdapter extends RecyclerView.Adapter<TeaListAdapter.TeaListAdapterViewHolder> {
 
-    private Context context;
-    private String[] mTeaIds;
-    private String[] mTeaNames;
+    private final Context context;
+    private final String[] mTeaIds;
+    private final String[] mTeaNames;
 
-    private TeaSelectedListener teaSelectedListener;
+    private final TeaSelectedListener teaSelectedListener;
 
     public TeaListAdapter(Context context, TeaSelectedListener teaSelectedListener){
         this.context = context;

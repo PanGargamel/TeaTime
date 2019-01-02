@@ -30,7 +30,4 @@
     <dimen name="nav_header_height">192dp</dimen>
     <dimen name="nav_header_padding">16dp</dimen>
 
-    <!-- activity_timer_finished.xml -->
-    <dimen name="tea_finished_image_margin_top">16dp</dimen>
-
 </resources>

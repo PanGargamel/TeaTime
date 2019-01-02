@@ -36,18 +36,21 @@
                 android:id="@+id/tea_instructions_temperature"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_instructions_temperature_80_85"/>
+                android:src="@drawable/ic_instructions_temperature_80_85"
+                android:contentDescription="@string/instructions_temperature_content_description"/>
             <ImageView
                 android:id="@+id/tea_instructions_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_instructions_time_2_4"
                 android:paddingLeft="@dimen/brewing_between_image_instructions_padding"
-                android:paddingRight="@dimen/brewing_between_image_instructions_padding"/>
+                android:paddingRight="@dimen/brewing_between_image_instructions_padding"
+                android:contentDescription="@string/instructions_time_content_description"/>
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_instructions_drink"/>
+                android:src="@drawable/ic_instructions_drink"
+                android:contentDescription="@string/instructions_drink_content_description"/>
         </LinearLayout>
 
         <TextView
@@ -56,8 +59,8 @@
             android:text="@string/brewing_instructions"
             android:textSize="@dimen/description_text_size"
             android:textStyle="bold"
-            android:paddingLeft="@dimen/title_padding"
-            android:paddingStart="@dimen/title_padding" />
+            android:paddingStart="@dimen/title_padding"
+            android:paddingEnd="@dimen/title_padding"/>
 
         <TextView
             android:id="@+id/tv_tea_brewing_instructions"
