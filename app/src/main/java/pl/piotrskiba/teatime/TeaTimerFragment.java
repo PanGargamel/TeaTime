@@ -104,6 +104,9 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
                 int progress = (int)((float)timeleft/mTotalBrewingTime*1000);
                 mTimerProgressBar.setProgress(progress);
             }
+            else{
+                setDefaultSeekBarProgress();
+            }
         }
         else {
             setDefaultSeekBarProgress();
