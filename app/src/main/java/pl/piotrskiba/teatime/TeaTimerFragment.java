@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -71,6 +72,10 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
         View rootView = inflater.inflate(R.layout.fragment_tea_timer, container, false);
 
         ButterKnife.bind(this, rootView);
+
+        if(savedInstanceState != null && savedInstanceState.containsKey(Constants.EXTRA_INDEX)){
+            mTeaIndex = savedInstanceState.getInt(Constants.EXTRA_INDEX);
+        }
 
         populateFragment();
 
@@ -294,5 +299,12 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
                 }
             }
         }
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putInt(Constants.EXTRA_INDEX, mTeaIndex);
     }
 }
