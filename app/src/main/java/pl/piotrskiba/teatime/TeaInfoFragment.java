@@ -1,6 +1,7 @@
 package pl.piotrskiba.teatime;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,6 +48,10 @@ public class TeaInfoFragment extends Fragment {
 
         ButterKnife.bind(this, rootView);
 
+        if(savedInstanceState != null && savedInstanceState.containsKey(Constants.EXTRA_INDEX)){
+            mTeaIndex = savedInstanceState.getInt(Constants.EXTRA_INDEX);
+        }
+
         populateFragment();
 
         return rootView;
@@ -77,5 +82,12 @@ public class TeaInfoFragment extends Fragment {
             int time_image = getResources().getIdentifier(tea_brewing_time_image, "drawable", getContext().getPackageName());
             mTeaBrewingTimeImageView.setImageResource(time_image);
         }
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putInt(Constants.EXTRA_INDEX, mTeaIndex);
     }
 }
