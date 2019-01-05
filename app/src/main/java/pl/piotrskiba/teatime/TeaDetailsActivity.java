@@ -2,6 +2,7 @@ package pl.piotrskiba.teatime;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.RingtoneManager;
@@ -9,6 +10,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
+import android.preference.PreferenceManager;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -142,8 +144,14 @@ public class TeaDetailsActivity extends AppCompatActivity {
             mMediaPlayer.setDataSource(this, uri);
 
             final AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-            if (audioManager.getStreamVolume(AudioManager.STREAM_ALARM) != 0) {
-                mMediaPlayer.setAudioStreamType(AudioManager.STREAM_ALARM);
+
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+            int stream = AudioManager.STREAM_NOTIFICATION;
+            if(sharedPreferences.getBoolean(getString(R.string.pref_play_while_silent_key), true))
+                stream = AudioManager.STREAM_ALARM;
+
+            if (audioManager.getStreamVolume(stream) != 0) {
+                mMediaPlayer.setAudioStreamType(stream);
                 mMediaPlayer.setLooping(true);
                 mMediaPlayer.prepare();
                 mMediaPlayer.start();

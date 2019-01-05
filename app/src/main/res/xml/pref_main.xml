@@ -6,4 +6,8 @@
         android:entryValues="@array/pref_language_option_values"
         android:key="@string/pref_language_key"
         android:title="@string/pref_language_label_title" />
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:title="@string/pref_play_while_silent_title"
+        android:key="@string/pref_play_while_silent_key" />
 </PreferenceScreen>

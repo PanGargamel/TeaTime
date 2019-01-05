@@ -62,6 +62,8 @@
     <string name="pref_language_label_english">Angielski</string>
     <string name="pref_language_label_polish">Polski</string>
 
+    <string name="pref_play_while_silent_title">Odtwarzaj przy wyciszonym telefonie</string>
+
     <!-- snackbars, toasts -->
     <string name="language_changed">Język aplikacji zostanie zmieniony po opuszczeniu ustawień.</string>
 
