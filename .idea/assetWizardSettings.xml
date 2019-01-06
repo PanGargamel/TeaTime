@@ -48,18 +48,13 @@
                                     <map>
                                       <entry key="backgroundAssetType" value="COLOR" />
                                       <entry key="backgroundColor" value="006f00" />
-                                      <entry key="foregroundImage" value="C:\Users\pskib\Desktop\TeaTime\logo2.png" />
+                                      <entry key="foregroundImage" value="C:\Users\pskib\Documents\grafika\TeaTime\logo.svg" />
                                       <entry key="showSafeZone" value="false" />
                                     </map>
                                   </option>
                                 </PersistentState>
                               </value>
                             </entry>
-                          </map>
-                        </option>
-                        <option name="values">
-                          <map>
-                            <entry key="outputIconType" value="ACTIONBAR" />
                           </map>
                         </option>
                       </PersistentState>
