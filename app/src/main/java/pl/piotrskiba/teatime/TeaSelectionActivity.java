@@ -38,6 +38,7 @@ public class TeaSelectionActivity extends AppCompatActivity implements TeaSelect
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
 
         // set language
