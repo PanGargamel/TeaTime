@@ -77,8 +77,6 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
             mTeaIndex = savedInstanceState.getInt(Constants.EXTRA_INDEX);
         }
 
-        populateFragment();
-
         return rootView;
     }
 
@@ -265,6 +263,8 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
         getContext().registerReceiver(mTimerUpdateReceiver, intentFilter);
 
         inForeground = true;
+
+        populateFragment();
     }
 
     @Override
