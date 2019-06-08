@@ -7,6 +7,7 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.CountDownTimer;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
@@ -97,12 +98,6 @@ public class CountDownTimerService extends Service {
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
                 notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-            NotificationChannel notificationChannel = new NotificationChannel(Constants.TIMER_NOTIFICATION_ID, getString(R.string.default_notification_channel_name), NotificationManager.IMPORTANCE_HIGH);
-            notificationManager.createNotificationChannel(notificationChannel);
-        }
-
         int minutes = 0;
         int seconds = timeleft;
         while(seconds >= 60){
@@ -111,6 +106,7 @@ public class CountDownTimerService extends Service {
         }
 
         Notification notification = new NotificationCompat.Builder(this, Constants.TIMER_NOTIFICATION_ID)
+                .setOngoing(true)
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle(title)
                 .setContentText(getString(R.string.notification_timer_format, minutes, seconds))

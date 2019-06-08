@@ -21,6 +21,7 @@ import butterknife.ButterKnife;
 import pl.piotrskiba.teatime.adapters.TeaListAdapter;
 import pl.piotrskiba.teatime.interfaces.TeaSelectedListener;
 import pl.piotrskiba.teatime.utils.LanguageUtils;
+import pl.piotrskiba.teatime.utils.NotificationUtils;
 
 public class TeaSelectionActivity extends AppCompatActivity implements TeaSelectedListener {
 
@@ -87,6 +88,9 @@ public class TeaSelectionActivity extends AppCompatActivity implements TeaSelect
                 return true;
             }
         });
+
+        // create notification channel
+        NotificationUtils.createNotificationChannel(this);
     }
 
     @Override
