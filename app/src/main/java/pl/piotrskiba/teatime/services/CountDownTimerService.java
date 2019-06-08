@@ -107,7 +107,8 @@ public class CountDownTimerService extends Service {
 
         Notification notification = new NotificationCompat.Builder(this, Constants.TIMER_NOTIFICATION_ID)
                 .setOngoing(true)
-                .setSmallIcon(R.mipmap.ic_launcher)
+                .setSmallIcon(R.drawable.ic_notification)
+                .setColor(getResources().getColor(R.color.colorPrimary))
                 .setContentTitle(title)
                 .setContentText(getString(R.string.notification_timer_format, minutes, seconds))
                 .setContentIntent(pendingIntent).build();
