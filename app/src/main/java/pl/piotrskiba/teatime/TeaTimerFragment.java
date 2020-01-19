@@ -49,7 +49,7 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
 
 
     private int mTeaIndex;
-    private int mTotalBrewingTime;
+    private long mTotalBrewingTime;
 
     private TimerUpdateReceiver mTimerUpdateReceiver;
 
@@ -93,14 +93,14 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
         else if(isServiceRunning(CountDownTimerService.class)) {
             String tea_id = getResources().getStringArray(R.array.tea_ids)[mTeaIndex];
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-            int timeleft = sharedPreferences.getInt(getString(R.string.pref_timeleft_key, tea_id), 0);
+            long timeleft = sharedPreferences.getLong(getString(R.string.pref_timeleft_key, tea_id), 0);
             if(timeleft > 0){
                 setDefaultSeekBarProgress();
                 showBrewingLayout();
 
                 updateTimerText(timeleft);
 
-                mTotalBrewingTime = sharedPreferences.getInt(getString(R.string.pref_total_time_key, tea_id), 1);
+                mTotalBrewingTime = sharedPreferences.getLong(getString(R.string.pref_total_time_key, tea_id), 1);
 
                 int progress = (int)((float)timeleft/mTotalBrewingTime*1000);
                 mTimerProgressBar.setProgress(progress);
@@ -140,22 +140,20 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
         progress *= 5;
         progress += min;
 
-        return progress;
+        return progress*1000;
     }
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        int seconds = getSeekBarValue(progress);
-        updateTimerText(seconds);
+        int milliseconds = getSeekBarValue(progress);
+        updateTimerText(milliseconds);
     }
 
-    private void updateTimerText(int seconds){
-        int minutes = 0;
+    private void updateTimerText(long milliseconds){
+        int seconds = (int)milliseconds/1000;
 
-        while(seconds >= 60){
-            seconds -= 60;
-            minutes += 1;
-        }
+        int minutes = seconds/60;
+        seconds -= minutes*60;
 
         mTimerTextView.setText(getString(R.string.timer_format, minutes, seconds));
     }
@@ -190,14 +188,14 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
 
         Intent timerService = new Intent(getContext(), CountDownTimerService.class);
         timerService.putExtra(Constants.EXTRA_INDEX, mTeaIndex);
-        timerService.putExtra(Constants.EXTRA_SECONDS, mTotalBrewingTime);
+        timerService.putExtra(Constants.EXTRA_MILLISECONDS, mTotalBrewingTime);
         getContext().getApplicationContext().startService(timerService);
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext().getApplicationContext());
         SharedPreferences.Editor editor = sharedPreferences.edit();
         String tea_id = getResources().getStringArray(R.array.tea_ids)[mTeaIndex];
-        editor.putInt(getString(R.string.pref_total_time_key, tea_id), mTotalBrewingTime);
-        editor.commit();
+        editor.putLong(getString(R.string.pref_total_time_key, tea_id), mTotalBrewingTime);
+        editor.apply();
 
         showBrewingLayout();
     }
@@ -209,8 +207,8 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext().getApplicationContext());
         SharedPreferences.Editor editor = sharedPreferences.edit();
         String tea_id = getResources().getStringArray(R.array.tea_ids)[mTeaIndex];
-        editor.putInt(getString(R.string.pref_timeleft_key, tea_id), 0);
-        editor.commit();
+        editor.putLong(getString(R.string.pref_timeleft_key, tea_id), 0);
+        editor.apply();
 
         int seconds = getSeekBarValue(mTimerSeekBar.getProgress());
         updateTimerText(seconds);
@@ -285,16 +283,16 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
             if (intent.getAction().equals(Constants.TIMER_UPDATE_ACTION)) {
                 int teaIndex = intent.getIntExtra(Constants.EXTRA_INDEX, -1);
                 if(teaIndex == mTeaIndex) {
-                    int seconds = intent.getIntExtra(Constants.EXTRA_SECONDS, -1);
+                    long milliseconds = intent.getLongExtra(Constants.EXTRA_MILLISECONDS, -1);
 
-                    if(seconds == 0){
+                    if(milliseconds == 0){
                         showAlarmLayout();
                         ((TeaDetailsActivity) getContext()).startAlarm();
                     }
                     else {
-                        updateTimerText(seconds);
+                        updateTimerText(milliseconds);
 
-                        int progress = (int) ((float) seconds / mTotalBrewingTime * 1000);
+                        int progress = (int) ((float)milliseconds / mTotalBrewingTime * 1000);
                         mTimerProgressBar.setProgress(progress);
                     }
                 }
