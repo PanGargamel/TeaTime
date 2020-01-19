@@ -283,7 +283,7 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
             if (intent.getAction().equals(Constants.TIMER_UPDATE_ACTION)) {
                 int teaIndex = intent.getIntExtra(Constants.EXTRA_INDEX, -1);
                 if(teaIndex == mTeaIndex) {
-                    long milliseconds = intent.getLongExtra(Constants.EXTRA_MILLISECONDS, -1);
+                    long milliseconds = intent.getLongExtra(Constants.EXTRA_MILLISECONDS, 0);
 
                     if(milliseconds == 0){
                         showAlarmLayout();
