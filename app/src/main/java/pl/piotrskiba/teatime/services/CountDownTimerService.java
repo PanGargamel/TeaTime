@@ -87,7 +87,7 @@ public class CountDownTimerService extends Service {
         return null;
     }
 
-    int lastseconds = -1;
+    private int lastseconds = -1;
     private void createNotification(String title, long timeleft){
         if(lastseconds != (int) timeleft / 1000) {
             lastseconds = (int) timeleft / 1000;

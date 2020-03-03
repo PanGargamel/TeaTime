@@ -90,7 +90,7 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
         if(showAlarmLayout) {
             showAlarmLayout();
         }
-        else if(isServiceRunning(CountDownTimerService.class)) {
+        else if(isServiceRunning()) {
             String tea_id = getResources().getStringArray(R.array.tea_ids)[mTeaIndex];
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
             long timeleft = sharedPreferences.getLong(getString(R.string.pref_timeleft_key, tea_id), 0);
@@ -242,10 +242,10 @@ public class TeaTimerFragment extends Fragment implements SeekBar.OnSeekBarChang
         mTimerSeekBarTitle.setVisibility(View.INVISIBLE);
     }
 
-    private boolean isServiceRunning(Class serviceClass) {
+    private boolean isServiceRunning() {
         ActivityManager manager = (ActivityManager) getContext().getSystemService(Context.ACTIVITY_SERVICE);
         for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
-            if (serviceClass.getName().equals(service.service.getClassName())) {
+            if (CountDownTimerService.class.getName().equals(service.service.getClassName())) {
                 return true;
             }
         }

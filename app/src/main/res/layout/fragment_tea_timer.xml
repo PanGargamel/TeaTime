@@ -42,7 +42,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/title_padding"
-            android:textAlignment="center"/>
+            android:textAlignment="center"
+            android:gravity="center_horizontal" />
         <SeekBar
             android:id="@+id/sb_timer"
             android:layout_width="match_parent"

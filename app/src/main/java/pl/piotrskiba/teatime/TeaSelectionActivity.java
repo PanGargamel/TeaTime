@@ -75,8 +75,6 @@ public class TeaSelectionActivity extends AppCompatActivity implements TeaSelect
                 mDrawerLayout.closeDrawers();
 
                 switch (item.getItemId()){
-                    case R.id.nav_make_tea:
-                        break;
                     case R.id.nav_settings:
                         Intent intent = new Intent(mContext, SettingsActivity.class);
                         startActivity(intent);

@@ -39,7 +39,7 @@
         <item>– użyj jedną łyżeczkę herbaty na 120–150 ml wody</item>
         <item>– użyj od 7 do 10 liści mięty (jedną torebkę) na 250 ml wody\n– zmiażdż liście, jeśli używasz świeżej mięty – pomoże to w uwolnieniu aromatu herbaty\n– zaparzaj herbatę wodą o temperaturze 96°C\n– twoja herbata powinna być gotowa w 7–12 minut jeśli korzystasz ze świeżych liści, lub w 3–10 minut jeśli robisz herbatę z torebki</item>
         <item>– użyj jedną łyżeczkę herbaty na 120–150 ml wody</item>
-        <item>– wypełnij kubek yerba mate (1/2 – 3/4 jego pojemności)\n- potrząśnij kubkiem trzymając go do góry nogami, aby umieścić lżejsze, bardziej sproszkowane liście u góry kubka\n- przechyl kubek tak, aby większość liści znajdowała się z boku naczynia oraz dodaj odrobinę zimnej wody\n- włóż bombillę w puste miejsce\n- zaparzaj yerba mate wodą o temperaturze od 70 do 80°C\n- twoja yerba mate powinna być gotowa do spożycia - pamiętaj aby uzupełniać zapas wody na bieżąco, gdy usłyszysz siorbanie\n- postaraj się nie ruszać zbytnio bombillą - może to doprowadzić do zatkania, lub dostania się liści do jej środka</item>
+        <item><![CDATA[– wypełnij kubek yerba mate (&#189; – &#190; jego pojemności)\n- potrząśnij kubkiem trzymając go do góry nogami, aby umieścić lżejsze, bardziej sproszkowane liście u góry kubka\n- przechyl kubek tak, aby większość liści znajdowała się z boku naczynia oraz dodaj odrobinę zimnej wody\n- włóż bombillę w puste miejsce\n- zaparzaj yerba mate wodą o temperaturze od 70 do 80°C\n- twoja yerba mate powinna być gotowa do spożycia - pamiętaj aby uzupełniać zapas wody na bieżąco, gdy usłyszysz siorbanie\n- postaraj się nie ruszać zbytnio bombillą - może to doprowadzić do zatkania, lub dostania się liści do jej środka]]></item>
         <item>– użyj od połowy do jednej łyżeczki (1–2 bambusowe łyżeczki do matchy) matchy na 150 ml wody\n- dodaj odrobinę wody o temperaturze od 70 do 85°C\n- "roztrzep" energicznie napój łyżeczką lub spieniaczem do mleka, aż herbata będzie pienista\n- uzupełnij resztę kubka wodą - twoja herbata powinna być gotowa!</item>
     </string-array>
 
@@ -72,5 +72,6 @@
     <string name="instructions_time_content_description">Ikona czasu parzenia</string>
     <string name="instructions_drink_content_description">Ikona gotowej herbaty</string>
     <string name="tea_image_content_description">Ikona herbaty</string>
+    <string name="nav_header_pattern_content_description">Obraz tła z herbatą</string>
 
 </resources>
