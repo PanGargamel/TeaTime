@@ -105,7 +105,7 @@ class TeaTimerFragment : Fragment(), OnSeekBarChangeListener, View.OnClickListen
             val sbval = ((defVal - min) / (max - min) * 100).toInt()
 
             mTimerSeekBar.progress = sbval
-            onProgressChanged(mTimerSeekBar, mTimerSeekBar!!.progress, false)
+            onProgressChanged(mTimerSeekBar, mTimerSeekBar.progress, false)
         }
     }
 
