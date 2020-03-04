@@ -89,9 +89,9 @@ class TeaSelectionActivity : AppCompatActivity(), TeaSelectedListener {
         }
     }
 
-    override fun onTeaSelected(tea_index: Int) {
+    override fun onTeaSelected(teaIndex: Int) {
         val intent = Intent(applicationContext, TeaDetailsActivity::class.java)
-        intent.putExtra(Constants.EXTRA_INDEX, tea_index)
+        intent.putExtra(Constants.EXTRA_INDEX, teaIndex)
 
         startActivity(intent)
     }

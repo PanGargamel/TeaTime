@@ -9,7 +9,7 @@ import androidx.preference.PreferenceFragmentCompat
 import com.google.android.material.snackbar.Snackbar
 
 class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeListener {
-    override fun onCreatePreferences(savedInstanceState: Bundle, rootKey: String) {
+    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.pref_main)
 
         val sharedPreferences = preferenceScreen.sharedPreferences
